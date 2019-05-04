@@ -1,0 +1,26 @@
+.cs1,.cs2,.cs3{
+  height: 220px;
+  width: 200px;
+  float: left;
+  margin: 5%;
+  margin-bottom: 180px;
+}
+
+.title{
+  margin: 35px;
+  text-align: center;
+  alignment: center;
+}
+
+.is1,.is2,.is3{
+  height: 220px;
+  width: 200px;
+  float: left;
+  margin: 5%;
+  margin-bottom: 180px;
+}
+
+.main{
+   margin-left: 10%;
+  margin-right: 10%;
+}

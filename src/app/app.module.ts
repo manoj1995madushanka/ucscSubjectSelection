@@ -13,6 +13,7 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireStorageModule} from '@angular/fire/storage';
+import {MaterialModule} from './material.module';
 
 @NgModule({
   declarations: [
@@ -29,8 +30,8 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
     AngularFireAuthModule,
     ReactiveFormsModule,
     RouterModule,
-    MatButtonModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
