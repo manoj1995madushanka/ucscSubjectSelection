@@ -12,6 +12,7 @@ export class GetSubjectsService {
 
   subjectChanged = new Subject<SubjectsModel[]>();
   private availableSubjects: Subscription[] = [];
+  filterTest: string;
   selectedid: string;
 
   constructor(private db: AngularFirestore, private afAuth: AngularFireAuth, private router: Router) {
@@ -29,12 +30,16 @@ export class GetSubjectsService {
   // getNannies
   getSubjects() {
     console.log("get subjects");
-    this.availableSubjects.push(this.db
+    /*this.availableSubjects.push(this.db
       .collection('bsc_cs')
       .valueChanges()
       .subscribe((subjects: SubjectsModel[]) => {
         this.subjectChanged.next(subjects);
-      }));
+      }));*/
+    this.db.collection('bsc_cs').valueChanges().
+      subscribe((subs: SubjectsModel[]) => {
+        this.subjectChanged.next(subs);
+    });
   }
 
 }
