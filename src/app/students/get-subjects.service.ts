@@ -15,6 +15,14 @@ export class GetSubjectsService {
   filterTest: string;
   selectedid: string;
 
+  csGeneral: boolean;
+  cs4se: boolean;
+  cs4se1sem: boolean;
+  cs4se2sem: boolean;
+  cs4cs: boolean;
+  cs4cs1sem: boolean;
+  cs4cs2sem: boolean;
+
   constructor(private db: AngularFirestore, private afAuth: AngularFireAuth, private router: Router) {
   }
 
@@ -27,9 +35,9 @@ export class GetSubjectsService {
   }
 
 
-  // getNannies
+  // getSubjects
   getSubjects() {
-    console.log("get subjects");
+    console.log('get subjects');
     /*this.availableSubjects.push(this.db
       .collection('bsc_cs')
       .valueChanges()
