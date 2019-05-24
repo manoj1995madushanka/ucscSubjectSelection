@@ -17,11 +17,14 @@ export class GetSubjectsService {
 
   csGeneral: boolean;
   cs4se: boolean;
-  cs4se1sem: boolean;
-  cs4se2sem: boolean;
+  se3yr1sem: boolean;
+  se4yr1sem: boolean;
+  se4yr2sem: boolean;
   cs4cs: boolean;
-  cs4cs1sem: boolean;
-  cs4cs2sem: boolean;
+  cs3yr1sem: boolean;
+  cs4yr1sem: boolean;
+  cs4yr2sem: boolean;
+
 
   constructor(private db: AngularFirestore, private afAuth: AngularFireAuth, private router: Router) {
   }
