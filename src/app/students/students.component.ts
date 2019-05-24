@@ -18,4 +18,13 @@ export class StudentsComponent implements OnInit {
     console.log(this.getSubs.csGeneral);
   }
 
+  changeDataSourseCS4SE() {
+    this.getSubs.cs4se = true;
+    console.log(this.getSubs.cs4se);
+  }
+
+  changeDataSourseCS4CS() {
+    this.getSubs.cs4cs = true;
+  }
+
 }

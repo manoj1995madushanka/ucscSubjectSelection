@@ -44,10 +44,12 @@ export class GetSubjectsService {
       .subscribe((subjects: SubjectsModel[]) => {
         this.subjectChanged.next(subjects);
       }));*/
-    this.db.collection('bsc_cs').valueChanges().
+    if (this.csGeneral === true){
+      this.db.collection('bsc_cs').valueChanges().
       subscribe((subs: SubjectsModel[]) => {
         this.subjectChanged.next(subs);
-    });
+      });
+    }
   }
 
 }
