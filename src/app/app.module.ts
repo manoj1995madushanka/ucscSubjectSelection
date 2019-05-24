@@ -16,6 +16,7 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
 import {MaterialModule} from './material.module';
 import { CsSelectYearSemComponent } from './students/cs-select-year-sem/cs-select-year-sem.component';
 import { CsGeneralComponent } from './students/cs-general/cs-general.component';
+import { SeSelectYearSemComponent } from './students/se-select-year-sem/se-select-year-sem.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { CsGeneralComponent } from './students/cs-general/cs-general.component';
     StudentsComponent,
     AuthComponent,
     CsSelectYearSemComponent,
-    CsGeneralComponent
+    CsGeneralComponent,
+    SeSelectYearSemComponent
   ],
   imports: [
     BrowserModule,

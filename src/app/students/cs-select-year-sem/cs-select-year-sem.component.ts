@@ -28,9 +28,4 @@ export class CsSelectYearSemComponent implements OnInit {
     console.log(this.selectSubs.cs4yr2sem);
   }
 
-  changeDataSourseCS3yr1Sem() {
-    this.selectSubs.cs3yr1sem = true;
-    console.log(this.selectSubs.cs3yr1sem);
-  }
-
 }
