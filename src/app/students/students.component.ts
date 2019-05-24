@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {GetSubjectsService} from './get-subjects.service';
 
 @Component({
   selector: 'app-students',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private getSubs: GetSubjectsService) { }
 
   ngOnInit() {
+  }
+
+  changeDataSourseCSGen() {
+    this.getSubs.csGeneral = true;
+    console.log(this.getSubs.csGeneral);
   }
 
 }
