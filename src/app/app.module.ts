@@ -14,12 +14,18 @@ import {AngularFireModule} from '@angular/fire';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {MaterialModule} from './material.module';
+import { CsSelectYearSemComponent } from './students/cs-select-year-sem/cs-select-year-sem.component';
+import { CsGeneralComponent } from './students/cs-general/cs-general.component';
+import { SeSelectYearSemComponent } from './students/se-select-year-sem/se-select-year-sem.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StudentsComponent,
-    AuthComponent
+    AuthComponent,
+    CsSelectYearSemComponent,
+    CsGeneralComponent,
+    SeSelectYearSemComponent
   ],
   imports: [
     BrowserModule,
