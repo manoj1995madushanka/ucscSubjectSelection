@@ -7,12 +7,14 @@ import { SidebarComponent } from './common/sidebar/sidebar.component';
 import { AdminStudentsComponent } from './admin-students/admin-students.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AdminSubjectsComponent } from './admin-subjects/admin-subjects.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AdminHomeComponent, SidebarComponent, AdminStudentsComponent, AdminDashboardComponent, AdminSubjectsComponent],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminModule { }
