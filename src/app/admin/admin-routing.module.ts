@@ -4,8 +4,13 @@ import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { AdminStudentsComponent } from './admin-students/admin-students.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AdminSubjectsComponent } from './admin-subjects/admin-subjects.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
 
 const routes: Routes = [
+  {
+    path: 'admin/login',
+    component: AdminLoginComponent,
+  },
   {
     path: 'admin',
     component: AdminHomeComponent,
@@ -29,7 +34,7 @@ const routes: Routes = [
         path: 'subjects',
         component: AdminSubjectsComponent,
         outlet: 'admin'
-      }
+      },
     ]
   }
 ];
