@@ -2,34 +2,31 @@
     <nav class="sidebar-nav">
       <ul class="nav">
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="[{ outlets: { admin: ['dashboard'] } }]">
+          <a class="nav-link" [routerLink]="[{ outlets: { admin: ['dashboard'] } }]" routerLinkActive="active">
             <i class="nav-icon icon-speedometer"></i> Dashboard
           </a>
         </li>
         <li class="nav-title">Components</li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="[{ outlets: { admin: ['students'] } }]">
+          <a class="nav-link" [routerLink]="[{ outlets: { admin: ['students'] } }]" routerLinkActive="active">
             <i class="nav-icon icon-pie-chart"></i> Students</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="[{ outlets: { admin: ['subjects'] } }]">
-            <i class="nav-icon icon-pie-chart"></i> Subjects</a>
         </li>
         <li class="nav-item nav-dropdown">
           <a class="nav-link nav-dropdown-toggle" href="#">
-            <i class="nav-icon icon-bell"></i> Notifications</a>
+            <i class="nav-icon icon-bell"></i> Subjects</a>
           <ul class="nav-dropdown-items">
             <li class="nav-item">
-              <a class="nav-link" href="notifications/alerts.html">
-                <i class="nav-icon icon-bell"></i> Alerts</a>
+              <a class="nav-link" [routerLink]="[{ outlets: {admin: ['subjects'] } }]" routerLinkActive="active">
+                <i class="nav-icon icon-bell"></i> BSc CS</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="notifications/badge.html">
-                <i class="nav-icon icon-bell"></i> Badge</a>
+              <a class="nav-link" [routerLink]="[{ outlets: {admin: ['subjects-bscis'] } }]" routerLinkActive="active">
+                <i class="nav-icon icon-bell"></i> BSc IS</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="notifications/modals.html">
-                <i class="nav-icon icon-bell"></i> Modals</a>
+              <a class="nav-link" [routerLink]="[{ outlets: {admin: ['subjects-bscse-hons'] } }]"
+                routerLinkActive="active">
+                <i class="nav-icon icon-bell"></i> BSc SE Hons.</a>
             </li>
           </ul>
         </li>

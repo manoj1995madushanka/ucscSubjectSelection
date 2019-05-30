@@ -47,13 +47,13 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><input value="1600422" style="border:none; border-bottom: solid 1px;" type="text"></td>
-              <td><input value="Jone Doe" style="border:none; border-bottom: solid 1px;" type="text"></td>
-              <td><input value="2016/CS/42" style="border:none; border-bottom: solid 1px;" type="text"></td>
+            <tr *ngFor="let student of students">
+              <td><input [(ngModel)]="student.index" style="border:none; border-bottom: solid 1px;" type="text"></td>
+              <td><input [(ngModel)]="student.name" style="border:none; border-bottom: solid 1px;" type="text"></td>
+              <td><input [(ngModel)]="student.regNo" style="border:none; border-bottom: solid 1px;" type="text"></td>
               <td>
-                <button class="btn btn-success btn-sm">Save</button>
-                <button class="btn btn-danger btn-sm ml-1">&times;</button>
+                <button (click)="saveStudent(student)" class="btn btn-success btn-sm">Save</button>
+                <button (click)="removeStudent(student.id)" class="btn btn-danger btn-sm ml-1">&times;</button>
               </td>
             </tr>
           </tbody>
