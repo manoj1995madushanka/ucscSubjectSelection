@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { StudentsComponent } from './students/students.component';
-import { AuthComponent } from './auth/auth.component';
 import { RouterModule } from '@angular/router';
 import { RoutingModule } from './routing.module';
 import { environment } from '../environments/environment';
@@ -18,12 +17,13 @@ import { CsSelectYearSemComponent } from './students/cs-select-year-sem/cs-selec
 import { CsGeneralComponent } from './students/cs-general/cs-general.component';
 import { SeSelectYearSemComponent } from './students/se-select-year-sem/se-select-year-sem.component';
 import { AdminModule } from './admin/admin.module';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     StudentsComponent,
-    AuthComponent,
+    // AuthComponent,
     CsSelectYearSemComponent,
     CsGeneralComponent,
     SeSelectYearSemComponent
@@ -31,6 +31,7 @@ import { AdminModule } from './admin/admin.module';
   imports: [
     BrowserModule,
     RouterModule,
+    AuthModule,
     AdminModule,
     RoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
