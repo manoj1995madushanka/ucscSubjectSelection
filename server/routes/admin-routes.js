@@ -1,33 +1,68 @@
 const express = require('express');
 const router = express.Router();
-var Admin = require('../models/admin');
+const User = require('../models/User');
 
-// router.post('/register', (req, res, next) => {
-//   // console.log(req.body.email);
-//   var email = req.body.email;
-//   var name = req.body.name;
-//   var password = req.body.password;
+router.delete('/student/:id', (req, res) => {
+  User.findOneAndRemove({
+    _id: req.params.id
+  }, (err, student) => {
+    res.json(student);
+    console.log(student);
+  })
 
-//   if (req.body.email && req.body.name && req.body.password) {
-//     var userData = {
-//       email,
-//       name,
-//       password
-//     };
+})
 
-//     User.create(userData, function (error, user) {
-//       if (error) {
-//         return next(error)
-//       } else {
-//         // req.session.userId = user._id
-//         return res.redirect('/chat')
-//       }
-//     })
-//   } else {
-//     var err = new Error("All fields required")
-//     err.status = 400
-//     return next(err)
-//   }
-// });
+router.put('/student/:id', (req, res) => {
+  const student = new User();
+
+  student._id = req.body.index;
+  student.name = req.body.name;
+  student.email = req.body.email;
+  student.index = req.body.index;
+  student.regNo = req.body.regNo;
+  User.findOneAndUpdate({
+    _id: req.params.id
+  }, student, (err, st) => {
+    if (!err) res.json(student);
+    else res.json(student);
+  })
+});
+
+router.post('/student', (req, res) => {
+  const student = new User();
+
+  student._id = req.body.index;
+  student.name = req.body.name;
+  student.email = req.body.email;
+  student.index = req.body.index;
+  student.regNo = req.body.regNo;
+  student.role = 'student';
+  student.setPassword(req.body.password);
+
+  student.save((err) => {
+    if (err) {
+      console.log('student new', err);
+      res.send(500);
+    } else res.json(student);
+  })
+})
+
+router.get('/student', (req, res) => {
+  User.find({}, (err, users) => {
+    let students = [];
+    users.forEach(user => {
+      if (user.role === 'student') {
+        const st = {
+          name: user.name,
+          email: user.email,
+          index: user.index,
+          regNo: user.regNo
+        }
+        students.push(st);
+      }
+    });
+    res.json(students);
+  })
+})
 
 module.exports = router;

@@ -13,6 +13,13 @@
             Number!</span>
         </div>
         <div class="form-group">
+          <label for="company">Email</label>
+          <input formControlName="email" class="form-control" type="text" placeholder="Enter Student Email"
+            [class.is-invalid]="email.invalid && (email.dirty || email.touched)">
+          <span *ngIf="email.invalid && (email.dirty || email.touched)" class="help-block text-danger">Invalid
+            Email!</span>
+        </div>
+        <div class="form-group">
           <label for="company">Student Name</label>
           <input formControlName="name" class="form-control" type="text" placeholder="Enter Student Name"
             [class.is-invalid]="name.invalid && (name.dirty || name.touched)">
@@ -24,6 +31,13 @@
             [class.is-invalid]="regNo.invalid && (regNo.dirty || regNo.tched)">
           <span *ngIf="regNo.invalid && (regNo.dirty || regNo.touched)" class="help-block text-danger">Invalid Register
             Number!</span>
+        </div>
+        <div class="form-group">
+          <label for="company">Password</label>
+          <input formControlName="password" class="form-control" type="text" placeholder="password"
+            [class.is-invalid]="password.invalid && (password.dirty || password.tched)">
+          <span *ngIf="password.invalid && (password.dirty || password.touched)" class="help-block text-danger">Invalid
+            password!</span>
         </div>
       </div>
       <div class="card-footer">
@@ -42,18 +56,25 @@
           <thead>
             <tr>
               <th>Index No.</th>
+              <th>Email</th>
               <th>Student Name</th>
               <th>Registration No</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let student of students">
-              <td><input [(ngModel)]="student.index" style="border:none; border-bottom: solid 1px;" type="text"></td>
-              <td><input [(ngModel)]="student.name" style="border:none; border-bottom: solid 1px;" type="text"></td>
-              <td><input [(ngModel)]="student.regNo" style="border:none; border-bottom: solid 1px;" type="text"></td>
+              <td><input [(ngModel)]="student.index" style="border:none; border-bottom: solid 1px;"
+                  [size]="student.index.length" type="text"></td>
+              <td><input [(ngModel)]="student.email" style="border:none; border-bottom: solid 1px;"
+                  [size]="student.email.length" type="text"></td>
+              <td><input [(ngModel)]="student.name" style="border:none; border-bottom: solid 1px;"
+                  [size]="student.name.length" type="text"></td>
+              <td><input [(ngModel)]="student.regNo" style="border:none; border-bottom: solid 1px;"
+                  [size]="student.regNo.length" type="text"></td>
               <td>
                 <button (click)="saveStudent(student)" class="btn btn-success btn-sm">Save</button>
-                <button (click)="removeStudent(student.id)" class="btn btn-danger btn-sm ml-1">&times;</button>
+                <button (click)="removeStudent(student.index)" class="btn btn-danger btn-sm ml-1">&times;</button>
               </td>
             </tr>
           </tbody>

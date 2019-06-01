@@ -3,6 +3,7 @@ var jwt = require('jsonwebtoken')
 var crypto = require('crypto');
 
 var userSchema = new mongoose.Schema({
+  _id: String,
   email: {
     type: String,
     unique: true,
@@ -11,9 +12,16 @@ var userSchema = new mongoose.Schema({
   },
   name: {
     type: String,
-    unique: true,
     required: true,
     trim: true,
+  },
+  index: {
+    type: String,
+    required: false,
+  },
+  regNo: {
+    type: String,
+    required: false,
   },
   role: {
     type: String,
@@ -22,51 +30,6 @@ var userSchema = new mongoose.Schema({
   hash: String,
   salt: String
 })
-
-// userSchema.statics.authenticate = function (email, password, callback) {
-//   User.findOne({
-//       email: email
-//     })
-//     .exec(function (err, user) {
-//       if (err) {
-//         return callback(err)
-//       } else if (!user) {
-//         var err = new Error('User not Found')
-//         err.status = 401
-//         return callback(err)
-//       }
-//       bcrypt.compare(password, user.password, function (err, result) {
-//         if (result === true) {
-//           // change online status
-//           User.login(user._id, function (err, result) {
-//             console.log('authenticate login')
-//           })
-//           return callback(null, user)
-//         } else {
-//           return callback()
-//         }
-//       })
-//     })
-// }
-
-// userSchema.statics.login = function (userId, callback) {
-//   User.findOneAndUpdate({
-//     _id: userId
-//   }, {
-//     online: true
-//   }, function (err, result) {
-//     return callback(err, result)
-//   })
-// }
-// userSchema.statics.logout = function (userId, callback) {
-//   User.findOneAndUpdate({
-//     _id: userId
-//   }, {
-//     online: false
-//   }, function (err, result) {
-//     return callback(err, result)
-//   })
-// }
 
 userSchema.statics.getUser = function (userId, callback) {
   User.findOne({

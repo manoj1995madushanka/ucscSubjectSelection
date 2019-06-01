@@ -15,7 +15,9 @@ var cors = require('cors');
 
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/ucsc', {
-  useNewUrlParser: true
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useFindAndModify: false
 });
 var db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error'))
