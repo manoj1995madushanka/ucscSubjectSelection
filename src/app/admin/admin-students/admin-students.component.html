@@ -65,7 +65,8 @@
           <li *ngFor="let sub of selectedStudent.subjects"
             class="list-group-item d-flex list-group-item-action justify-content-between align-items-center">
             {{ sub.name }}
-            <span class="btn btn-primary btn-sm" (click)="unassignSub(sub)">&times;</span>
+            <span *ngIf="sub.availability === 'optional'" class="btn btn-primary btn-sm"
+              (click)="unassignSub(sub)">&times;</span>
           </li>
         </ul>
       </div>

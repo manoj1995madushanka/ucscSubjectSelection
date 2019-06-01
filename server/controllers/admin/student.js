@@ -32,9 +32,7 @@ module.exports.assignSubject = (req, res) => {
 module.exports.getElegibleSubjects = (req, res) => {
   const course = req.params.course;
   if (course === 'bsc-cs') {
-    BscSc.find({
-      availability: 'optional'
-    }, (err, subs) => {
+    BscSc.find({}, (err, subs) => {
       if (err) res.sendStatus(500);
       else res.json(subs);
     })

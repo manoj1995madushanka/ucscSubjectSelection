@@ -46,10 +46,14 @@ export class AdminStudentsComponent implements OnInit {
   selectStudent(student) {
     this.selectedStudent = student;
     this.studentService.elegibleSubjects(student.course).subscribe(res => {
+      // order matters :D
       this.subjects = res;
       this.selectedSub = this.subjects[0];
+      this.selectedStudent.subjects = this.selectedStudent.subjects.concat(this.subjects.filter(s => s.availability === 'compulsory'));
+      this.subjects = this.subjects.filter(s => s.availability === 'optional');
     });
   }
+
   removeStudent(id) {
     this.studentService.removeStudent(id).toPromise().then((data) => {
       this.students.forEach((student, i) => {
