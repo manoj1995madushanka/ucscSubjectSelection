@@ -12,6 +12,7 @@ const passportSetup = require('./config/passport');
 
 var bodyParser = require('body-parser');
 var cors = require('cors');
+var jwt = require('express-jwt');
 
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/ucsc', {
@@ -32,7 +33,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-
+app.use(passport.initialize());
 
 //avoid CORS issues
 app.use(function (req, res, next) {
@@ -41,14 +42,17 @@ app.use(function (req, res, next) {
   //res.header("Access-Control-Allow-Methods","GET,POST,PUT,DELETE,PATCH,OPTIONS");
   next();
 });
-app.use(passport.initialize());
+
+var auth = jwt({
+  secret: 'MY_SECRET',
+  userProperty: 'payload'
+});
+app.use('/admin', auth)
 
 app.use('/admin', adminRoutes);
 app.use('/auth', authRoutes);
 app.use('/', appRoutes);
 
-
 http.createServer(app).listen(port);
-
 
 console.log("running on port", port);

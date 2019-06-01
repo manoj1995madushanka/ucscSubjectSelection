@@ -9,6 +9,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { AdminSubjectsComponent } from './admin-subjects/admin-subjects.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { BscCsComponent } from './subjects/bsc-cs/bsc-cs.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
     AdminStudentsComponent,
     AdminDashboardComponent,
     AdminSubjectsComponent,
-    AdminLoginComponent],
+    AdminLoginComponent,
+    BscCsComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

@@ -6,6 +6,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { AdminSubjectsComponent } from './admin-subjects/admin-subjects.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { AdminGuard } from './admin.guard';
+import { BscCsComponent } from './subjects/bsc-cs/bsc-cs.component';
 
 const routes: Routes = [
   // {
@@ -37,6 +38,11 @@ const routes: Routes = [
         component: AdminSubjectsComponent,
         outlet: 'admin'
       },
+      {
+        path: 'subjects-bsc-cs',
+        component: BscCsComponent,
+        outlet: 'admin'
+      }
     ]
   }
 ];

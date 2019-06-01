@@ -1,11 +1,10 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var mongoose = require('mongoose');
-var bcrypt = require('bcrypt');
 var User = mongoose.model('User');
 
 passport.use(new LocalStrategy({
-    usernameField: 'email'
+    usernameField: 'email',
   },
   function (username, password, done) {
     User.findOne({
