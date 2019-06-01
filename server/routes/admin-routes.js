@@ -1,118 +1,25 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/User');
-const BscSc = require('../models/BscCs');
+const studentController = require('../controllers/admin/student');
+const bsccsController = require('../controllers/admin/bsccs');
+const bscisController = require('../controllers/admin/bscis');
 
-router.delete('/subject/bsccs/:id', (req, res) => {
-  console.log(req.params);
-  BscSc.findOneAndRemove({
-    _id: req.params.id
-  }, (err, student) => {
-    res.json(student);
-  })
-})
+router.delete('/subject/bscis/:id', bscisController.removeSubject);
+router.put('/subject/bscis/:id', bscisController.updateSubject);
+router.post('/subject/bscis', bscisController.addSubject);
+router.get('/subject/bscis', bscisController.getSubjects);
 
-router.put('/subject/bsccs/:id', (req, res) => {
+router.delete('/subject/bsccs/:id', bsccsController.removeSubject);
+router.put('/subject/bsccs/:id', bsccsController.updateSubject);
+router.post('/subject/bsccs', bsccsController.addSubject);
+router.get('/subject/bsccs', bsccsController.getSubjects);
 
-  const subject = new BscSc();
-  subject.name = req.body.name;
-  subject.code = req.body.code;
-  subject.credits = req.body.credits;
-  subject.availability = req.body.availability;
-  subject._id = req.body.code;
-
-  BscSc.findOneAndUpdate({
-    _id: req.params.id
-  }, subject, (err, st) => {
-    if (err) res.json(err);
-    else res.json(subject);
-  })
-})
-
-router.post('/subject/bsccs', (req, res) => {
-  const subject = new BscSc();
-  subject.name = req.body.name;
-  subject.code = req.body.code;
-  subject.credits = req.body.credits;
-  subject.availability = req.body.availability;
-  subject._id = req.body.code;
-
-  subject.save(err => {
-    if (err) {
-      console.log(err);
-      res.sendStatus(500);
-    } else res.json(req.body);
-  })
-})
-router.get('/subject/bsccs', (req, res) => {
-  BscSc.find({}, (err, subs) => {
-    if (err) {
-      console.log(err);
-      res.sendStatus(500);
-    } else res.json(subs);
-  })
-})
-
-router.delete('/student/:id', (req, res) => {
-  User.findOneAndRemove({
-    _id: req.params.id
-  }, (err, student) => {
-    res.json(student);
-    console.log(student);
-  });
-})
-
-router.put('/student/:id', (req, res) => {
-  const student = new User();
-
-  student._id = req.body.index;
-  student.name = req.body.name;
-  student.email = req.body.email;
-  student.index = req.body.index;
-  student.regNo = req.body.regNo;
-  User.findOneAndUpdate({
-    _id: req.params.id
-  }, student, (err, st) => {
-    if (err) res.json(err);
-    else res.json(student);
-  })
-});
-
-router.post('/student', (req, res) => {
-  const student = new User();
-
-  student._id = req.body.index;
-  student.name = req.body.name;
-  student.email = req.body.email;
-  student.index = req.body.index;
-  student.regNo = req.body.regNo;
-  student.role = 'student';
-  student.setPassword(req.body.password);
-
-  student.save((err) => {
-    if (err) {
-      console.log('student new', err);
-      res.send(500);
-    } else res.json(student);
-  })
-})
-
-router.get('/student', (req, res) => {
-  User.find({}, (err, users) => {
-    let students = [];
-    users.forEach(user => {
-      if (user.role === 'student') {
-        const st = {
-          name: user.name,
-          email: user.email,
-          index: user.index,
-          regNo: user.regNo
-        }
-        students.push(st);
-      }
-    });
-    res.json(students);
-  })
-})
+router.put('/student/subject', studentController.unassignSubject);
+router.post('/student/subject', studentController.assignSubject);
+router.get('/student/subject/:course', studentController.getElegibleSubjects);
+router.delete('/student/:id', studentController.removeStudent)
+router.put('/student/:id', studentController.updateStudent);
+router.post('/student', studentController.addStudent)
+router.get('/student', studentController.getStudents);
 
 module.exports = router;

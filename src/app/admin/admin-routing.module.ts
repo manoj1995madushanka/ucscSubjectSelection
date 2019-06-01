@@ -4,9 +4,9 @@ import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { AdminStudentsComponent } from './admin-students/admin-students.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AdminSubjectsComponent } from './admin-subjects/admin-subjects.component';
-import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { AdminGuard } from './admin.guard';
 import { BscCsComponent } from './subjects/bsc-cs/bsc-cs.component';
+import { BscIsComponent } from './subjects/bsc-is/bsc-is.component';
 
 const routes: Routes = [
   // {
@@ -41,6 +41,11 @@ const routes: Routes = [
       {
         path: 'subjects-bsc-cs',
         component: BscCsComponent,
+        outlet: 'admin'
+      },
+      {
+        path: 'subjects-bsc-is',
+        component: BscIsComponent,
         outlet: 'admin'
       }
     ]

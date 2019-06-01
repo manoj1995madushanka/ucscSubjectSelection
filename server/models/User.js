@@ -27,6 +27,11 @@ var userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  subjects: {
+    type: Array,
+    required: false,
+  },
+  course: String,
   hash: String,
   salt: String
 })

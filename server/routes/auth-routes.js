@@ -21,7 +21,6 @@ router.post('/register', (req, res, next) => {
       "token": token
     });
   });
-
 });
 
 router.post('/login', (req, res, next) => {
