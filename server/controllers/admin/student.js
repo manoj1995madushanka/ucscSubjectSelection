@@ -1,4 +1,45 @@
 const User = require('../../models/User');
+const BscSc = require('../../models/BscCs');
+
+module.exports.unassignSubject = (req, res) => {
+  const student = req.body.student;
+  const sub = req.body.subject;
+
+  User.updateOne({
+    _id: student.index
+  }, {
+    $pullAll: {
+      subjects: [sub]
+    }
+  }, (err, done) => {
+    res.json(done);
+  })
+}
+module.exports.assignSubject = (req, res) => {
+  const student = req.body.student;
+  const sub = req.body.subject;
+
+  User.updateOne({
+    _id: student.index
+  }, {
+    $push: {
+      subjects: sub
+    }
+  }, (err, done) => {
+    res.json(done);
+  })
+}
+module.exports.getElegibleSubjects = (req, res) => {
+  const course = req.params.course;
+  if (course === 'bsc-cs') {
+    BscSc.find({
+      availability: 'optional'
+    }, (err, subs) => {
+      if (err) res.sendStatus(500);
+      else res.json(subs);
+    })
+  }
+};
 
 module.exports.removeStudent = (req, res) => {
   User.findOneAndRemove({
@@ -53,7 +94,9 @@ module.exports.getStudents = (req, res) => {
           name: user.name,
           email: user.email,
           index: user.index,
-          regNo: user.regNo
+          regNo: user.regNo,
+          subjects: user.subjects,
+          course: user.course
         }
         students.push(st);
       }

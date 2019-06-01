@@ -12,6 +12,21 @@ export class StudentService {
 
   constructor(private http: HttpClient, private auth: AuthService) { }
 
+  unassignSubject(student, subject) {
+    return this.http.put(`http://localhost:8080/admin/student/subject`, { student, subject },
+      { headers: { Authorization: `Bearer ${this.auth.getToken()}` } });
+  }
+
+  assignSubject(student, subject) {
+    return this.http.post(`http://localhost:8080/admin/student/subject`, { student, subject },
+      { headers: { Authorization: `Bearer ${this.auth.getToken()}` } });
+  }
+
+  elegibleSubjects(course: string) {
+    return this.http.get(`http://localhost:8080/admin/student/subject/${course}`,
+      { headers: { Authorization: `Bearer ${this.auth.getToken()}` } });
+  }
+
   removeStudent(id: string) {
     return this.http.delete(`http://localhost:8080/admin/student/${id}`,
       { headers: { Authorization: `Bearer ${this.auth.getToken()}` } });
@@ -30,6 +45,5 @@ export class StudentService {
   getStudents() {
     return this.http.get('http://localhost:8080/admin/student',
       { headers: { Authorization: `Bearer ${this.auth.getToken()}` } });
-
   }
 }

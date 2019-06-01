@@ -1,5 +1,5 @@
 <div class="animated fadeIn row">
-  <form class="col-sm-4" [formGroup]="studentForm" (ngSubmit)="addStudent(studentForm.value)">
+  <form *ngIf="!selectedStudent" class="col-sm-4" [formGroup]="studentForm" (ngSubmit)="addStudent(studentForm.value)">
     <div class="card">
       <div class="card-header">
         <strong>Add Student</strong>
@@ -46,7 +46,31 @@
       </div>
     </div>
   </form>
-
+  <div *ngIf="selectedStudent" class="col-sm-4">
+    <button class="btn btn-primary mb-3" type="button" (click)="selectedStudent = null">Add Student</button>
+    <div class="card">
+      <div class="card-header">Subjects of # {{selectedStudent.index}}</div>
+      <div class="card-body">
+        <ul class="list-group">
+          <div class="row">
+            <div class="form-group col-sm-4">
+              <select [(ngModel)]="selectedSub" class="form-control" id="ccyear">
+                <option *ngFor="let subj of subjects" [ngValue]="subj">{{ subj.name }}</option>
+              </select>
+            </div>
+            <div class="form-group col-sm-4">
+              <button class="btn btn-primary" (click)="assignSubject()">Add</button>
+            </div>
+          </div>
+          <li *ngFor="let sub of selectedStudent.subjects"
+            class="list-group-item d-flex list-group-item-action justify-content-between align-items-center">
+            {{ sub.name }}
+            <span class="btn btn-primary btn-sm" (click)="unassignSub(sub)">&times;</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
   <div class="col-lg-8">
     <div class="card">
       <div class="card-header">
@@ -63,11 +87,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let student of students">
-              <td><input [(ngModel)]="student.index" style="border:none; border-bottom: solid 1px;"
-                  [size]="student.index.length" type="text"></td>
+            <tr (click)="selectStudent(student)" *ngFor="let student of students">
+              <td>{{ student.index }}</td>
               <td><input [(ngModel)]="student.email" style="border:none; border-bottom: solid 1px;"
-                  [size]="student.email.length" type="text"></td>
+                  [size]="student.email.length" type="text">
+              </td>
               <td><input [(ngModel)]="student.name" style="border:none; border-bottom: solid 1px;"
                   [size]="student.name.length" type="text"></td>
               <td><input [(ngModel)]="student.regNo" style="border:none; border-bottom: solid 1px;"

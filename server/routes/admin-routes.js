@@ -14,6 +14,9 @@ router.put('/subject/bsccs/:id', bsccsController.updateSubject);
 router.post('/subject/bsccs', bsccsController.addSubject);
 router.get('/subject/bsccs', bsccsController.getSubjects);
 
+router.put('/student/subject', studentController.unassignSubject);
+router.post('/student/subject', studentController.assignSubject);
+router.get('/student/subject/:course', studentController.getElegibleSubjects);
 router.delete('/student/:id', studentController.removeStudent)
 router.put('/student/:id', studentController.updateStudent);
 router.post('/student', studentController.addStudent)

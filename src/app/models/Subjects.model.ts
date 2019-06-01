@@ -1,7 +1,7 @@
-export interface SubjectsModel {
-  courseCode: string;
-  courseName: string;
+export interface Sub {
+  code: string;
+  name: string;
   credits: number;
-  yearSem: string;
-  availability: string
+  availability: string;
+  _id: string;
 }
