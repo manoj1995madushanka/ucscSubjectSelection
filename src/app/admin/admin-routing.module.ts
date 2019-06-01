@@ -5,15 +5,17 @@ import { AdminStudentsComponent } from './admin-students/admin-students.componen
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AdminSubjectsComponent } from './admin-subjects/admin-subjects.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { AdminGuard } from './admin.guard';
 
 const routes: Routes = [
-  {
-    path: 'admin/login',
-    component: AdminLoginComponent,
-  },
+  // {
+  //   path: 'admin/login',
+  //   component: AdminLoginComponent,
+  // },
   {
     path: 'admin',
     component: AdminHomeComponent,
+    canActivate: [AdminGuard],
     children: [
       {
         path: '',

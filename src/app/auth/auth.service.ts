@@ -8,6 +8,7 @@ export interface UserDetails {
   _id: string;
   email: string;
   name: string;
+  role: string;
   exp: number;
   iat: number;
 }
@@ -20,6 +21,7 @@ export interface TokenPayload {
   email: string;
   password: string;
   name?: string;
+  role?: string;
 }
 
 @Injectable()
@@ -50,10 +52,25 @@ export class AuthService {
     } else {
       return null;
     }
+
+  }
+
+  public isAdmin(): boolean {
+    const user = this.getUserDetails();
+
+    if (user) {
+      if (user.role === 'admin') {
+        console.log(user.role);
+
+        return true;
+      }
+    }
+    return false;
   }
 
   public isLoggedIn(): boolean {
     const user = this.getUserDetails();
+
     if (user) {
       return user.exp > Date.now() / 1000;
     } else {
