@@ -1,7 +1,6 @@
 const BscSc = require('../../models/BscCs');
 
 module.exports.removeSubject = (req, res) => {
-  console.log(req.params);
   BscSc.findOneAndRemove({
     _id: req.params.id
   }, (err, student) => {
@@ -42,17 +41,10 @@ module.exports.addSubject = (req, res) => {
 };
 
 module.exports.getSubjects = (req, res) => {
-  const subject = new BscSc();
-  subject.name = req.body.name;
-  subject.code = req.body.code;
-  subject.credits = req.body.credits;
-  subject.availability = req.body.availability;
-  subject._id = req.body.code;
-
-  subject.save(err => {
+  BscSc.find({}, (err, subs) => {
     if (err) {
       console.log(err);
       res.sendStatus(500);
-    } else res.json(req.body);
+    } else res.json(subs);
   })
 };
