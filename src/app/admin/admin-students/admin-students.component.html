@@ -1,0 +1,130 @@
+<div class="animated fadeIn row">
+  <form *ngIf="!selectedStudent" class="col-sm-4" [formGroup]="studentForm" (ngSubmit)="addStudent(studentForm.value)">
+    <div class="card">
+      <div class="card-header">
+        <strong>Add Student</strong>
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <label for="company">Index Number</label>
+          <input formControlName="index" class="form-control" type="text" placeholder="16000202"
+            [class.is-invalid]="index.invalid && (index.dirty || index.touched)">
+          <span *ngIf="index.invalid && (index.dirty || index.touched)" class="help-block text-danger">Invalid Index
+            Number!</span>
+        </div>
+        <div class="form-group">
+          <label for="company">Email</label>
+          <input formControlName="email" class="form-control" type="text" placeholder="Enter Student Email"
+            [class.is-invalid]="email.invalid && (email.dirty || email.touched)">
+          <span *ngIf="email.invalid && (email.dirty || email.touched)" class="help-block text-danger">Invalid
+            Email!</span>
+        </div>
+        <div class="form-group">
+          <label for="company">Student Name</label>
+          <input formControlName="name" class="form-control" type="text" placeholder="Enter Student Name"
+            [class.is-invalid]="name.invalid && (name.dirty || name.touched)">
+          <span *ngIf="name.invalid && (name.dirty || name.touched)" class="help-block text-danger">Invalid Name!</span>
+        </div>
+        <div class="form-group">
+          <label for="company">Register Number</label>
+          <input formControlName="regNo" class="form-control" type="text" placeholder="eg: 2016/CS/001"
+            [class.is-invalid]="regNo.invalid && (regNo.dirty || regNo.tched)">
+          <span *ngIf="regNo.invalid && (regNo.dirty || regNo.touched)" class="help-block text-danger">Invalid Register
+            Number!</span>
+        </div>
+        <div class="form-group">
+          <label for="company">Password</label>
+          <input formControlName="password" class="form-control" type="text" placeholder="password"
+            [class.is-invalid]="password.invalid && (password.dirty || password.tched)">
+          <span *ngIf="password.invalid && (password.dirty || password.touched)" class="help-block text-danger">Invalid
+            password!</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-sm btn-primary" type="submit">
+          <i class="fa fa-dot-circle-o"></i> Add</button>
+      </div>
+    </div>
+  </form>
+  <div *ngIf="selectedStudent" class="col-sm-4">
+    <button class="btn btn-primary mb-3" type="button" (click)="selectedStudent = null">Add Student</button>
+    <div class="card">
+      <div class="card-header">Subjects of # {{selectedStudent.index}}</div>
+      <div class="card-body">
+        <ul class="list-group">
+          <div class="row">
+            <div class="form-group col-sm-4">
+              <select [(ngModel)]="selectedSub" class="form-control" id="ccyear">
+                <option *ngFor="let subj of subjects" [ngValue]="subj">{{ subj.name }}</option>
+              </select>
+            </div>
+            <div class="form-group col-sm-4">
+              <button class="btn btn-primary" (click)="assignSubject()">Add</button>
+            </div>
+          </div>
+          <li *ngFor="let sub of selectedStudent.subjects"
+            class="list-group-item d-flex list-group-item-action justify-content-between align-items-center">
+            {{ sub.name }}
+            <span *ngIf="sub.availability === 'optional'" class="btn btn-primary btn-sm"
+              (click)="unassignSub(sub)">&times;</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-8">
+    <div class="card">
+      <div class="card-header">
+        <i class="fa fa-align-justify"></i> Students</div>
+      <div class="card-body">
+        <table class="table table-responsive-sm">
+          <thead>
+            <tr>
+              <th>Index No.</th>
+              <th>Email</th>
+              <th>Student Name</th>
+              <th>Registration No</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr (click)="selectStudent(student)" *ngFor="let student of students">
+              <td>{{ student.index }}</td>
+              <td><input [(ngModel)]="student.email" style="border:none; border-bottom: solid 1px;"
+                  [size]="student.email.length" type="text">
+              </td>
+              <td><input [(ngModel)]="student.name" style="border:none; border-bottom: solid 1px;"
+                  [size]="student.name.length" type="text"></td>
+              <td><input [(ngModel)]="student.regNo" style="border:none; border-bottom: solid 1px;"
+                  [size]="student.regNo.length" type="text"></td>
+              <td>
+                <button (click)="saveStudent(student)" class="btn btn-success btn-sm">Save</button>
+                <button (click)="removeStudent(student.index)" class="btn btn-danger btn-sm ml-1">&times;</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="">Prev</a>
+          </li>
+          <li class="page-item active">
+            <a class="page-link" href="#">1</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">2</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">3</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">4</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="">Next</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

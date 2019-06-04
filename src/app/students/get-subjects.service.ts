@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
-import {Subject, Subscription} from 'rxjs';
-import {SubjectsModel} from '../models/Subjects.model';
-import {AngularFirestore} from '@angular/fire/firestore';
-import {AngularFireAuth} from '@angular/fire/auth';
-import {Router} from '@angular/router';
-import {and} from '@angular/router/src/utils/collection';
+import { Subscription, Subject } from 'rxjs';
+import { Sub } from '../models/Subjects.model';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
+import { and } from '@angular/router/src/utils/collection';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GetSubjectsService {
 
-  subjectChanged = new Subject<SubjectsModel[]>();
+  subjectChanged = new Subject<Sub[]>();
   private availableSubjects: Subscription[] = [];
   filterTest: string;
   selectedid: string;
@@ -35,7 +35,8 @@ export class GetSubjectsService {
     this.afAuth.auth.onAuthStateChanged(subject => {
       if (subject) {
         this.selectedid = subject.uid;
-      }});
+      }
+    });
   }
 
 
@@ -45,69 +46,69 @@ export class GetSubjectsService {
     /*this.availableSubjects.push(this.db
       .collection('bsc_cs')
       .valueChanges()
-      .subscribe((subjects: SubjectsModel[]) => {
+      .subscribe((subjects: Subject[]) => {
         this.subjectChanged.next(subjects);
       }));*/
-    if (this.csGeneral === true){
+    if (this.csGeneral === true) {
       this.db.collection('bsc_cs').valueChanges().
-      subscribe((subs: SubjectsModel[]) => {
-        this.subjectChanged.next(subs);
-      });
+        subscribe((subs: Subject[]) => {
+          this.subjectChanged.next(subs);
+        });
       this.resetValues();
     }
     if (this.cs4cs === true && this.cs3yr1sem === true) {
       this.db.collection('bsc_cs_3yr1sem').valueChanges().
-      subscribe((subs: SubjectsModel[]) => {
-        this.subjectChanged.next(subs);
-      });
+        subscribe((subs: Subject[]) => {
+          this.subjectChanged.next(subs);
+        });
       this.resetValues();
     }
 
     if (this.cs4cs === true && this.cs4yr1sem === true) {
       this.db.collection('bsc_cs_4yr1sem').valueChanges().
-      subscribe((subs: SubjectsModel[]) => {
-        this.subjectChanged.next(subs);
-      });
+        subscribe((subs: Subject[]) => {
+          this.subjectChanged.next(subs);
+        });
       this.resetValues();
     }
 
     if (this.cs4cs === true && this.cs4yr2sem === true) {
       this.db.collection('bsc_cs_4yr2sem').valueChanges().
-      subscribe((subs: SubjectsModel[]) => {
-        this.subjectChanged.next(subs);
-      });
+        subscribe((subs: Subject[]) => {
+          this.subjectChanged.next(subs);
+        });
       this.resetValues();
     }
 
-    if (this.cs4se === true ) {
+    if (this.cs4se === true) {
       this.db.collection('bsc_se').valueChanges().
-      subscribe((subs: SubjectsModel[]) => {
-        this.subjectChanged.next(subs);
-      });
+        subscribe((subs: Subject[]) => {
+          this.subjectChanged.next(subs);
+        });
       this.resetValues();
     }
 
     if (this.cs4se === true && this.se3yr1sem === true) {
       this.db.collection('bsc_se_3yr1sem').valueChanges().
-      subscribe((subs: SubjectsModel[]) => {
-        this.subjectChanged.next(subs);
-      });
+        subscribe((subs: Subject[]) => {
+          this.subjectChanged.next(subs);
+        });
       this.resetValues();
     }
 
     if (this.cs4se === true && this.se4yr1sem === true) {
       this.db.collection('bsc_se_4yr1sem').valueChanges().
-      subscribe((subs: SubjectsModel[]) => {
-        this.subjectChanged.next(subs);
-      });
+        subscribe((subs: Subject[]) => {
+          this.subjectChanged.next(subs);
+        });
       this.resetValues();
     }
 
     if (this.cs4se === true && this.se4yr2sem === true) {
       this.db.collection('bsc_se_4yr2sem').valueChanges().
-      subscribe((subs: SubjectsModel[]) => {
-        this.subjectChanged.next(subs);
-      });
+        subscribe((subs: Subject[]) => {
+          this.subjectChanged.next(subs);
+        });
       this.resetValues();
     }
   }

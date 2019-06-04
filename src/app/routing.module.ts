@@ -1,16 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {RouterModule, Routes} from '@angular/router';
-import {AppComponent} from './app.component';
-import {StudentsComponent} from './students/students.component';
-import {CsSelectYearSemComponent} from './students/cs-select-year-sem/cs-select-year-sem.component';
-import {CsGeneralComponent} from './students/cs-general/cs-general.component';
+import { RouterModule, Routes } from '@angular/router';
+import { AppComponent } from './app.component';
+import { StudentsComponent } from './students/students.component';
+import { CsSelectYearSemComponent } from './students/cs-select-year-sem/cs-select-year-sem.component';
+import { CsGeneralComponent } from './students/cs-general/cs-general.component';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
-  {path: '', component: StudentsComponent},
-  {path: 'selectyearandsemester', component:  CsSelectYearSemComponent},
-  {path: 'cs_general', component: CsGeneralComponent}
-  ]
+  { path: '', component: StudentsComponent, canActivate: [AuthGuard] },
+  { path: 'selectyearandsemester', component: CsSelectYearSemComponent },
+  { path: 'cs_general', component: CsGeneralComponent }
+];
 
 @NgModule({
   declarations: [],

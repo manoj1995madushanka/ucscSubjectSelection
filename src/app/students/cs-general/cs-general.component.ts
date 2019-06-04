@@ -1,10 +1,10 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {Subject, Subscription} from 'rxjs';
-import {SubjectsModel} from '../../models/Subjects.model';
-import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
-import {GetSubjectsService} from '../get-subjects.service';
-import {Router} from '@angular/router';
-import {AngularFirestore} from '@angular/fire/firestore';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Sub } from '../../models/Subjects.model';
+import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { GetSubjectsService } from '../get-subjects.service';
+import { Router } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-cs-general',
@@ -14,21 +14,21 @@ import {AngularFirestore} from '@angular/fire/firestore';
 export class CsGeneralComponent implements OnInit {
 
   displayedColumns = ['courseCode', 'courseName', 'credits', 'availability'];
-  dataSource = new MatTableDataSource<SubjectsModel>();
+  dataSource = new MatTableDataSource<Sub>();
   private nChangedSubscription: Subscription;
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private getSubjects: GetSubjectsService,
-              private router: Router,
-              public db: AngularFirestore) {
+    private router: Router,
+    public db: AngularFirestore) {
 
   }
 
   ngOnInit() {
     this.getSubjects.getSubjects();
-    this.nChangedSubscription = this.getSubjects.subjectChanged.subscribe((sub: SubjectsModel[]) => {
+    this.nChangedSubscription = this.getSubjects.subjectChanged.subscribe((sub: Sub[]) => {
       this.dataSource.data = sub;
     });
     /*this.nChangedSubscription = this.getSubjects.subjectChanged.subscribe(
