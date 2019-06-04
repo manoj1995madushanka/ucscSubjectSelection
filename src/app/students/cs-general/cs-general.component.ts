@@ -16,7 +16,6 @@ export class CsGeneralComponent implements OnInit {
   displayedColumns = ['courseCode', 'courseName', 'credits', 'availability'];
   dataSource = new MatTableDataSource<SubjectsModel>();
   private nChangedSubscription: Subscription;
-  selectedJob: string;
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
