@@ -16,10 +16,34 @@
             </div>
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                <span class="input-group-text">@</span>
+                <span class="input-group-text">
+                  <i class="icon-user"></i>
+                </span>
+              </div>
+              <input class="form-control" type="text" placeholder="Index No" [(ngModel)]="credentials.index">
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="icon-user"></i>
+                </span>
+              </div>
+              <select [(ngModel)]="credentials.course" class="form-control" id="ccyear">
+                <option value="bsc-cs">{{ 'BSc CS'}}</option>
+                <option value="hbsc-cs">BSc CS (Hons.)</option>
+                <option value="bsc-is">BSc IS</option>
+                <option value="hbsc-is">BSc IS (Hons.)</option>
+                <option value="hbsc-se">BSc SE (Hons.)</option>
+              </select>
+              <!-- <input class="form-control" type="text" placeholder="Index No" [(ngModel)]="credentials.index"> -->
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"></span>
               </div>
               <input class="form-control" type="text" placeholder="Email" [(ngModel)]="credentials.email">
             </div>
+
             <div class="input-group mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text">

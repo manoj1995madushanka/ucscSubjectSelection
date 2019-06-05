@@ -11,7 +11,10 @@ export class RegisterComponent implements OnInit {
 
   credentials = {
     email: '',
-    password: ''
+    password: '',
+    index: '',
+    course: 'bsc-cs',
+    name: '',
   };
 
   constructor(private auth: AuthService, private router: Router) { }
@@ -22,7 +25,7 @@ export class RegisterComponent implements OnInit {
     this.auth.register(this.credentials).subscribe(() => {
       console.log('registered');
 
-      // this.router.navigateByUrl('/profile');
+      this.router.navigateByUrl('/');
     }, (err) => {
       console.error(err);
     });

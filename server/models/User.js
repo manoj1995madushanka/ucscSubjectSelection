@@ -31,6 +31,10 @@ var userSchema = new mongoose.Schema({
     type: Array,
     required: false,
   },
+  year: {
+    type: Number,
+    required: false,
+  },
   course: String,
   hash: String,
   salt: String

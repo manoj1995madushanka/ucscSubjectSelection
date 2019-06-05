@@ -56,7 +56,12 @@ export class AuthService {
   }
 
   public isAdmin(): boolean {
+
+    if (!this.isLoggedIn()) {
+      return false;
+    }
     const user = this.getUserDetails();
+    console.log(user);
 
     if (user) {
       if (user.role === 'admin') {
@@ -65,6 +70,7 @@ export class AuthService {
         return true;
       }
     }
+
     return false;
   }
 
