@@ -46,7 +46,7 @@ export class GetSubjectsService {
     /*this.availableSubjects.push(this.db
       .collection('bsc_cs')
       .valueChanges()
-      .subscribe((subjects: Subject[]) => {
+      .subscribe((subjects: Sub[]) => {
         this.subjectChanged.next(subjects);
       }));*/
     if (this.csGeneral === true) {

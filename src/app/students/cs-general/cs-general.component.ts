@@ -1,10 +1,15 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Sub } from '../../models/Subjects.model';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { GetSubjectsService } from '../get-subjects.service';
 import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { BscCsComponent } from 'src/app/admin/subjects/bsc-cs/bsc-cs.component';
+import { BscCsService } from 'src/app/admin/services/bsc-cs.service';
+import { AuthService } from 'src/app/auth/auth.service';
+import { StudentService } from 'src/app/admin/services/student.service';
+import { Student } from 'src/app/models/Student.model';
 
 @Component({
   selector: 'app-cs-general',
@@ -14,52 +19,53 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class CsGeneralComponent implements OnInit {
 
   displayedColumns = ['courseCode', 'courseName', 'credits', 'availability'];
-  dataSource = new MatTableDataSource<Sub>();
-  private nChangedSubscription: Subscription;
+  selectedJob: string;
+
+  subjects = [];
+  allSubs = [];
+  student;
+  subs = [];
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private getSubjects: GetSubjectsService,
-    private router: Router,
-    public db: AngularFirestore) {
-
-  }
+  constructor(
+    private getSubjects: BscCsService,
+    private studentService: StudentService,
+    private auth: AuthService) { }
 
   ngOnInit() {
-    this.getSubjects.getSubjects();
-    this.nChangedSubscription = this.getSubjects.subjectChanged.subscribe((sub: Sub[]) => {
-      this.dataSource.data = sub;
+    console.log(this.auth.getUserDetails());
+
+    this.getSubjects.getSubjects().subscribe((res: Sub[]) => {
+      this.allSubs = res;
+      this.subjects = res.filter(sub => sub.availability === 'optional');
     });
-    /*this.nChangedSubscription = this.getSubjects.subjectChanged.subscribe(
-      (subjects: SubjectsModel[]) => {
-        this.dataSource.data = subjects;
-      }
-    );
-    this.getSubjects.getSubjects();
-    this.selectedJob = this.getSubjects.filterTest;
-    this.dataSource.filter = this.selectedJob;*/
+    this.studentService.getStudent(this.auth.getUserDetails()._id).subscribe(res => {
+      this.student = res;
+      console.log(this.student);
+      this.student.subjects.push(this.allSubs.filter(sub => sub.availability === 'compulsory')[0]);
+    });
   }
-
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
+  assignSub(subject: Sub) {
+    this.studentService.assignSubject(this.auth.getUserDetails(), subject).subscribe(res => {
+      this.student.subjects.push(subject);
+      this.subjects.forEach((ele, i) => {
+        if (ele.code === subject.code) {
+          this.subjects.splice(i, 1);
+        }
+      });
+    });
   }
+  unassignSub(sub) {
+    this.studentService.unassignSubject(this.auth.getUserDetails(), sub).subscribe(res => {
+      this.subjects.push(sub);
 
-  doFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+      this.student.subjects.forEach((ele, i) => {
+        if (ele.code === sub.code) {
+          this.student.subjects.splice(i, 1);
+        }
+      });
+    });
   }
-
-  ngOnDestroy() {
-    this.nChangedSubscription.unsubscribe();
-  }
-
-  /*goProfile(nanny) {
-    console.log(nanny.Id);
-    console.log("current id "+ this.authS.currentUserID);
-    this.authS.selectedUserName = nanny.name;
-    this.authS.selectedUserDoc = this.db.collection('nanny').doc(nanny.Id);
-    this.router.navigate(['/ntable/nprofile', nanny.name]);
-    this.trainingService.toProfile(nanny);
-  }*/
 }

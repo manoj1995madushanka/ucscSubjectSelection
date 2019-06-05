@@ -20,6 +20,7 @@ router.get('/student/subject/:course', studentController.getElegibleSubjects);
 router.delete('/student/:id', studentController.removeStudent)
 router.put('/student/:id', studentController.updateStudent);
 router.post('/student', studentController.addStudent)
+router.get('/student/:id', studentController.getStudent);
 router.get('/student', studentController.getStudents);
 
 module.exports = router;

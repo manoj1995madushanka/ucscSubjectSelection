@@ -56,15 +56,18 @@ export class AuthService {
   }
 
   public isAdmin(): boolean {
+
+    if (!this.isLoggedIn()) {
+      return false;
+    }
     const user = this.getUserDetails();
 
     if (user) {
       if (user.role === 'admin') {
-        console.log(user.role);
-
         return true;
       }
     }
+
     return false;
   }
 

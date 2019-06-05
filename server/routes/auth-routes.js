@@ -5,7 +5,8 @@ const User = require('../models/User');
 
 router.post('/register', (req, res, next) => {
   var user = new User();
-
+  user._id = req.body.index;
+  user.course = req.body.course;
   user.name = req.body.name;
   user.email = req.body.email;
   user.role = 'student';
@@ -13,7 +14,7 @@ router.post('/register', (req, res, next) => {
   user.setPassword(req.body.password);
 
   user.save(function (err) {
-
+    if (err) console.log(err);
     var token;
     token = user.generateJwt();
     res.status(200);
