@@ -10,12 +10,14 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
 
   credentials = {
+    name: '',
     email: '',
     password: '',
     index: '',
     regNo: '',
     course: 'bsc-cs',
     name: '',
+
   };
 
   constructor(private auth: AuthService, private router: Router) { }
