@@ -6,7 +6,7 @@ module.exports.unassignSubject = (req, res) => {
   const sub = req.body.subject;
 
   User.updateOne({
-    _id: student.index
+    _id: student._id
   }, {
     $pullAll: {
       subjects: [sub]
@@ -19,13 +19,14 @@ module.exports.assignSubject = (req, res) => {
   const student = req.body.student;
   const sub = req.body.subject;
 
-  User.updateOne({
-    _id: student.index
+  User.findOneAndUpdate({
+    _id: student._id
   }, {
     $push: {
       subjects: sub
     }
   }, (err, done) => {
+    if (err) console.log(err);
     res.json(done);
   })
 }
@@ -83,6 +84,22 @@ module.exports.addStudent = (req, res) => {
   })
 };
 
+module.exports.getStudent = (req, res) => {
+  User.findOne({
+    _id: req.params.id
+  }, (err, user) => {
+    const st = {
+      name: user.name,
+      email: user.email,
+      index: user.index,
+      regNo: user.regNo,
+      subjects: user.subjects,
+      course: user.course
+    }
+    res.json(st);
+  })
+};
+
 module.exports.getStudents = (req, res) => {
   User.find({}, (err, users) => {
     let students = [];
@@ -97,6 +114,7 @@ module.exports.getStudents = (req, res) => {
           course: user.course
         }
         students.push(st);
+
       }
     });
     res.json(students);

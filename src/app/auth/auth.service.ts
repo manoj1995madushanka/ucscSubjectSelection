@@ -61,12 +61,9 @@ export class AuthService {
       return false;
     }
     const user = this.getUserDetails();
-    console.log(user);
 
     if (user) {
       if (user.role === 'admin') {
-        console.log(user.role);
-
         return true;
       }
     }

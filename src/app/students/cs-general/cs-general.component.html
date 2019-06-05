@@ -1,43 +1,104 @@
-<!--<div fxLayoutAlign="center center">
-  <mat-form-field fxFlex="40%">
-    <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Type Location">
-  </mat-form-field>
-</div>-->
+<div class="row mt-3 ml-3">
 
-<mat-table [dataSource]="dataSource" matSort>
-  <ng-container matColumnDef="courseCode">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Course Code</mat-header-cell>
-    <mat-cell *matCellDef="let element">{{ element.courseCode }}</mat-cell>
-  </ng-container>
+  <div class="col-lg-4">
+    <div class="card">
+      <div class="card-header">
+        <i class="fa fa-align-justify"></i> Subjects</div>
+      <div class="card-body">
+        <table class="table table-responsive-sm">
+          <thead>
+            <tr>
+              <th>Code</th>
+              <th>Subject Name</th>
+              <th>Credits</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let sub of subjects">
+              <td>{{ sub.code }}</td>
+              <td>{{ sub.name }}</td>
+              <td>{{ sub.credits }}</td>
+              <td>{{ sub.availability }}</td>
+              <td>
+                <button *ngIf="sub.availability=='optional'" (click)="assignSub(sub)"
+                  class="btn btn-success btn-sm">Select</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="#">Prev</a>
+          </li>
+          <li class="page-item active">
+            <a class="page-link" href="#">1</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">2</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">3</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">4</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
-  <ng-container matColumnDef="courseName">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Corse Name</mat-header-cell>
-    <mat-cell *matCellDef="let element">{{ element.courseName}}</mat-cell>
-  </ng-container>
-
-  <ng-container matColumnDef="credits">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Credits</mat-header-cell>
-    <mat-cell *matCellDef="let element">{{ element.credits | number}}</mat-cell>
-  </ng-container>
-
-  <ng-container matColumnDef="availability" >
-
-    <mat-header-cell *matHeaderCellDef >
-      Availability
-    </mat-header-cell>
-    <!--<mat-cell >
-      <button mat-raised-button color="primary">Find Nanny</button>
-    </mat-cell>-->
-    <mat-cell *matCellDef="let element" >
-      <button *ngIf="element.availability === 'optional'" mat-raised-button color="primary">Select</button>
-    </mat-cell>
-  </ng-container>
-
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-</mat-table>
-
-<mat-paginator [pageSize]="5" [pageSizeOptions]="[1, 5, 10, 20]">
-</mat-paginator>
-
-
+  <div class="col-lg-4">
+    <div class="card">
+      <div class="card-header">
+        <i class="fa fa-align-justify"></i> Subjects</div>
+      <div class="card-body">
+        <table *ngIf="student" class="table table-responsive-sm">
+          <thead>
+            <tr>
+              <th>Code</th>
+              <th>Subject Name</th>
+              <th>Credits</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let sub of student.subjects">
+              <td>{{ sub.code }}</td>
+              <td>{{ sub.name }}</td>
+              <td>{{ sub.credits }}</td>
+              <td>{{ sub.availability }}</td>
+              <td>
+                <button *ngIf="sub.availability=='optional'" (click)="unassignSub(sub)"
+                  class="btn btn-danger btn-sm">Remove</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="#">Prev</a>
+          </li>
+          <li class="page-item active">
+            <a class="page-link" href="#">1</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">2</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">3</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">4</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

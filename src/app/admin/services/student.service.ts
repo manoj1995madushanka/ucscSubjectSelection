@@ -42,6 +42,9 @@ export class StudentService {
       { headers: { Authorization: `Bearer ${this.auth.getToken()}` } });
   }
 
+  getStudent(id: string) {
+    return this.http.get(`http://localhost:8080/admin/student/${id}`, { headers: { Authorization: `Bearer ${this.auth.getToken()}` } });
+  }
   getStudents() {
     return this.http.get('http://localhost:8080/admin/student',
       { headers: { Authorization: `Bearer ${this.auth.getToken()}` } });
