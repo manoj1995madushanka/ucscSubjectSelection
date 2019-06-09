@@ -6,11 +6,13 @@ import { StudentsComponent } from './students/students.component';
 import { CsSelectYearSemComponent } from './students/cs-select-year-sem/cs-select-year-sem.component';
 import { CsGeneralComponent } from './students/cs-general/cs-general.component';
 import { AuthGuard } from './auth/auth.guard';
+import {HcsComponent} from './students/hcs/hcs.component';
 
 const routes: Routes = [
   { path: '', component: StudentsComponent, canActivate: [AuthGuard] },
   { path: 'selectyearandsemester', component: CsSelectYearSemComponent },
-  { path: 'cs_general', component: CsGeneralComponent }
+  { path: 'cs_general', component: CsGeneralComponent },
+  {path: 'hcs', component: HcsComponent}
 ];
 
 @NgModule({

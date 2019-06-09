@@ -1,0 +1,105 @@
+
+<div class="row mt-3 ml-3">
+
+  <div class="col-lg-4">
+    <div class="card">
+      <div class="card-header">
+        <i class="fa fa-align-justify"></i> Subjects</div>
+      <div class="card-body">
+        <table class="table table-responsive-sm">
+          <thead>
+          <tr>
+            <th>Code</th>
+            <th>Subject Name</th>
+            <th>Credits</th>
+            <th>Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let sub of subjects">
+            <td>{{ sub.code }}</td>
+            <td>{{ sub.name }}</td>
+            <td>{{ sub.credits }}</td>
+            <td>{{ sub.availability }}</td>
+            <td>
+              <button *ngIf="sub.availability=='optional'" (click)="assignSub(sub)"
+                      class="btn btn-success btn-sm">Select</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="#">Prev</a>
+          </li>
+          <li class="page-item active">
+            <a class="page-link" href="#">1</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">2</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">3</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">4</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-4">
+    <div class="card">
+      <div class="card-header">
+        <i class="fa fa-align-justify"></i> Subjects</div>
+      <div class="card-body">
+        <table *ngIf="student" class="table table-responsive-sm">
+          <thead>
+          <tr>
+            <th>Code</th>
+            <th>Subject Name</th>
+            <th>Credits</th>
+            <th>Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let sub of student.subjects">
+            <td>{{ sub.code }}</td>
+            <td>{{ sub.name }}</td>
+            <td>{{ sub.credits }}</td>
+            <td>{{ sub.availability }}</td>
+            <td>
+              <button *ngIf="sub.availability=='optional'" (click)="unassignSub(sub)"
+                      class="btn btn-danger btn-sm">Remove</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="#">Prev</a>
+          </li>
+          <li class="page-item active">
+            <a class="page-link" href="#">1</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">2</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">3</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">4</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

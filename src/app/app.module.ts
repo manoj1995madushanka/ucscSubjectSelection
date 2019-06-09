@@ -18,6 +18,13 @@ import { CsGeneralComponent } from './students/cs-general/cs-general.component';
 import { SeSelectYearSemComponent } from './students/se-select-year-sem/se-select-year-sem.component';
 import { AdminModule } from './admin/admin.module';
 import { AuthModule } from './auth/auth.module';
+import { IsGeneralComponent } from './students/is-general/is-general.component';
+import { HcsComponent } from './students/hcs/hcs.component';
+import { HseComponent } from './students/hse/hse.component';
+import { HisComponent } from './students/his/his.component';
+import { HisSelectYearSemComponent } from './students/his-select-year-sem/his-select-year-sem.component';
+import { Hcs4yr1semComponent } from './students/hcs4yr1sem/hcs4yr1sem.component';
+import { Hcs4yr2semComponent } from './students/hcs4yr2sem/hcs4yr2sem.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +33,14 @@ import { AuthModule } from './auth/auth.module';
     // AuthComponent,
     CsSelectYearSemComponent,
     CsGeneralComponent,
-    SeSelectYearSemComponent
+    SeSelectYearSemComponent,
+    IsGeneralComponent,
+    HcsComponent,
+    HseComponent,
+    HisComponent,
+    HisSelectYearSemComponent,
+    Hcs4yr1semComponent,
+    Hcs4yr2semComponent
   ],
   imports: [
     BrowserModule,
